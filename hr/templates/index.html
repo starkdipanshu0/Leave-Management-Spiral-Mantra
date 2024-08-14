@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}Home Page{% endblock %}
+{% block sidebar %}
+<div class="h-screen w-screen justify-center items-center border-2 flex flex-col">
+    <a href="http://127.0.0.1:8000/accounts/login/" class="box-border border-2 border-blue-500 bg-blue-600 text-white p-3 m-2 rounded-md shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">
+
+            <div class="text-3xl font-bold">Team Access Portal</div>
+
+    </a>
+    <a href="http://127.0.0.1:8000/admin" class="box-border border-2 border-blue-500 bg-blue-600 text-white p-3 m-2 rounded-md shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">
+        <div class="text-3xl font-bold"> Admin Login</div>
+    </a>
+</div>
+{% endblock %}
+{% block content %}
+
+
+
+{% endblock %}
