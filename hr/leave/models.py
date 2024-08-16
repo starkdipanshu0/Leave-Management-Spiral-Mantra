@@ -18,21 +18,19 @@ class Leave(models.Model):
 		('casual', 'Casual Leave'),
 		('paid', 'Paid Leave')
 		)
-	Leave_STATUS = {
+	LEAVE_STATUS = {
 		('approved', 'Approved'),
 		('pending', 'Pending'),
-		('cancelled', 'Cencelled')
+		('cancelled', 'Cencelled'),
+		('rejected', 'Rejected'),
 	}
 	user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=1)
 	startdate = models.DateField(verbose_name=_('Start Date'),help_text='leave start date is on ..',null=True,blank=False)
 	enddate = models.DateField(verbose_name=_('End Date'),help_text='coming back on ...',null=True,blank=False)
 	leavetype = models.CharField(choices=LEAVE_TYPE,max_length=25,default='casual',null=True,blank=False)
 	reason = models.CharField(verbose_name=_('Reason for Leave'),max_length=255,help_text='add additional information for leave',null=True,blank=True)
-	defaultdays = models.PositiveIntegerField(verbose_name=_('Leave days per year counter'),default=DAYS,null=True,blank=True)
 
-
-
-	status = models.CharField(choices=LEAVE_TYPE,max_length=10,default='pending',blank=False) #pending,approved,rejected,cancelled
+	status = models.CharField(choices=LEAVE_STATUS,max_length=10,default='pending',blank=False) #pending,approved,rejected,cancelled
 	is_approved = models.BooleanField(default=False) #hide
 
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -51,8 +49,6 @@ class Leave(models.Model):
 
 	def __str__(self):
 		return ('{0} - {1}'.format(self.leavetype,self.user))
-
-
 
 
 	@property
@@ -121,7 +117,9 @@ class Leave(models.Model):
 			self.status = 'rejected'
 			self.save()
 
-
+	@classmethod
+	def leave_history(cls, user):
+		return cls.objects.filter(user=user).order_by('-startdate')
 
 	@property
 	def is_rejected(self):

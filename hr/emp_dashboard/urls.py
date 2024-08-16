@@ -6,5 +6,6 @@ app_name = 'emp_dashboard'
 urlpatterns = [
     path('dashboard/',views.employee_dashboard,name='dashboard'),
     path('apply_for_leave/',views.apply_for_leave,name='apply_for_leave'),
+    path('leave_history/',views.leave_history,name='leave_history'),
 ]
 

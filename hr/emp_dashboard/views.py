@@ -48,3 +48,11 @@ def apply_for_leave(request):
         form = LeaveCreationForm()
 
     return render(request, 'emp_dashboard/apply_for_leave.html', {'form': form})
+@login_required
+def leave_history(request):
+    """
+    Displays the leave history for the logged-in user.
+    """
+    user = request.user
+    leaves = Leave.leave_history(user)
+    return render(request, 'emp_dashboard/leave_history.html', {'leaves': leaves})

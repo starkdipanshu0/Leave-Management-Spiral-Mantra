@@ -128,8 +128,8 @@ class Employee(models.Model):
     dateissued = models.DateField(_('Date Issued'),help_text='date staff id was issued',blank=False,null=True)
 
     #Leave Balance
-    casual_leave_balance = models.PositiveIntegerField(default=0)
-    paid_leave_balance = models.PositiveIntegerField(default=0)
+    casual_leave_balance = models.PositiveIntegerField(default=12)
+    paid_leave_balance = models.PositiveIntegerField(default=12)
     #Education
     education = models.OneToOneField(Education, on_delete=models.CASCADE, null= True, blank=True, related_name='education')
     # app related

@@ -26,7 +26,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('accounts/',include('accounts.urls',namespace='accounts')),
     path('emp_dashboard/',include('emp_dashboard.urls',namespace='emp_dashboard')),
-
+    path('leave/',include('leave.urls',namespace='leave')),
 
     path("__reload__/", include("django_browser_reload.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
