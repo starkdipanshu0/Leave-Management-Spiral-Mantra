@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="p-4  mt-14">
+
+{% if employees %}
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+    <h1 class="text-2xl font-bold mb-4 dark:text-white">Employee List</h1>
+
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Department
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Role
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Employment Type
+                </th>
+                {% comment %} <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th> {% endcomment %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees  %}
+
+                <tr  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"  onclick="window.location='{% url 'employee:details' employee_id=employee.id %}'">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ employee.user.get_full_name }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ employee.department.name }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ employee.role.name }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ employee.employeetype }}
+                    </td>
+
+
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p>There are no employee</p>
+{% endif %}
+
+
+</div>
+{% endblock %}

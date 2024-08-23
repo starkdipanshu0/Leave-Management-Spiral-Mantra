@@ -22,14 +22,14 @@
     </script>
 </head>
 
-<body class="bg-gray-600 dark:bg-slate-700 rounded-lg px-1 py-1 ring-1 ring-slate-900/5 shadow-xl">
+<body class="bg-gray-100 dark:bg-slate-700 rounded-lg px-1 py-1 ring-1 ring-slate-900/5 shadow-xl">
 
     {% block navheader %}
             {% include 'includes/navheader_default.html' %}
     {% endblock %}
            {% block sidebar %}{% include 'includes/sidebar.html' %}{% endblock %}
-    <div class="container  mx-auto  ">
-        <div class="p-1 sm:ml-60">
+    <div class="container  mx-auto   ">
+        <div class="p-1 bg-white dark:bg-gray-700 sm:ml-60" >
 
             {% block content %}{% endblock %}
         </div>
@@ -78,6 +78,9 @@ themeToggleBtn.addEventListener('click', function() {
     }
 
 });
+
+// change background color of clicked button
+
     </script>
 </body>
 

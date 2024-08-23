@@ -7,12 +7,6 @@ from employee.models import CustomUser
 from django.conf import settings
 # Create your models here.
 
-
-
-
-DAYS = 30
-
-
 class Leave(models.Model):
 	LEAVE_TYPE = (
 		('casual', 'Casual Leave'),
@@ -82,7 +76,6 @@ class Leave(models.Model):
 
 
 
-	@property
 	def approve_leave(self):
 		if not self.is_approved:
 			self.is_approved = True
@@ -92,7 +85,6 @@ class Leave(models.Model):
 
 
 
-	@property
 	def unapprove_leave(self):
 		if self.is_approved:
 			self.is_approved = False
@@ -101,7 +93,6 @@ class Leave(models.Model):
 
 
 
-	@property
 	def leaves_cancel(self):
 		if self.is_approved or not self.is_approved:
 			self.is_approved = False
@@ -110,7 +101,6 @@ class Leave(models.Model):
 
 
 
-	@property
 	def reject_leave(self):
 		if self.is_approved or not self.is_approved:
 			self.is_approved = False

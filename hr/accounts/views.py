@@ -91,9 +91,11 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None and user.is_active:
                 login(request, user)
-                user_type = user.user_type
-                if user_type == 2:  # Assuming user_type is an integer
+                user_type = user.user_type  # Adjust if you use a custom user model
+                if user_type == 2:
                     return redirect('emp_dashboard:dashboard')
+                elif user_type == 1:
+                    return redirect('Admin:dashboard')
                 # Add more conditions if needed for different user types
                 else:
                     messages.info(request, 'User type not recognized.')

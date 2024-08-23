@@ -11,25 +11,16 @@
 <div class="grid grid-cols-2 gap-4 mb-4">
    <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
      <p class="text-2xl text-gray-400 dark:text-gray-500">
-      Available Casual Leave balance: {{profile.casual_leave_balance}} Days
+      No of Employee: {{emp_count}}
      </p>
    </div>
    <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
      <p class="text-2xl text-gray-400 dark:text-gray-500">
-      Available Paid Leave balance: {{profile.paid_leave_balance}} Days
+
      </p>
    </div>
 </div>
 
-<h2>Leave Applications</h2>
-<ul>
-
-  {% for leave in leave_applications %}
-    <li>{{ leave.leavetype }} leave from {{ leave.startdate }} to {{ leave.enddate }} is  {{ leave.status }}</li>
-  {% empty %}
-    <li>No leave applications found.</li>
-  {% endfor %}
-</ul>
 </div>
 {% comment %} <a href="{% url 'apply_for_leave' %}" class="btn btn-primary">Apply for Leave</a> {% endcomment %}
 {% endblock %}

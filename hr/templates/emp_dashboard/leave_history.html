@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="p-4 border-2 border-orange-500 border-dashed rounded-lg dark:border-gray-700 mt-14">
+<div class="p-4  mt-14">
 
 {% if leaves %}
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -41,9 +41,9 @@
                 </td>
                 <td class="px-6 py-4 text-right">
                     {% if leave.status == 'pending' %}
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <a href="{%url 'leave:edit_leave' leave_id=leave.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                     {% endif %}
-                    <a href="#" class="font-medium text-red-600 dark:text-red-600 hover:underline pl-2">Cancel</a>
+                    <a href="{%url 'leave:cancel_leave' leave_id=leave.id %}" class="font-medium text-red-600 dark:text-red-600 hover:underline pl-2">Cancel</a>
                 </td>
 
             </tr>

@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class=" bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 mt-14">
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">Employee Details</h1>
+
+    <div class="space-y-4">
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Name:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.user.get_full_name }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Department:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.department.name }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Role:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.role.name }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Phone Number:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.phone_number }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Email:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.personal_email }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Employee Type:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.employeetype }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Casual Leave Balance:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.casual_leave_balance }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Paid Leave Balance:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.paid_leave_balance }}</span></p>
+    </div>
+
+    <div class="mt-6">
+        <a href="{% url 'employee:edit' employee.id %}" class="inline-block bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-600 dark:hover:bg-blue-700 transition duration-200">
+            Edit Details
+        </a>
+    </div>
+</div>
+{% endblock %}

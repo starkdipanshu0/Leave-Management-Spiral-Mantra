@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="p-4  mt-14">
+{% if leaves_list %}
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Leave Type
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Start Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    End Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for leave in leaves_list  %}
+            <tr  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{leave.leavetype}}
+                </th>
+                <td class="px-6 py-4">
+                    {{leave.startdate}}
+                </td>
+                <td class="px-6 py-4">
+                    {{leave.enddate}}
+                </td>
+                <td class="px-6 py-4">
+                    {{leave.status}}
+                </td>
+                <td class="px-6 py-4 text-right">
+
+
+                    <a href="#" class="approve-btn font-medium text-blue-600 dark:text-blue-500 hover:underline" data-leave-id="{{ leave.id }}">Approve</a>
+
+
+                    <a href="#" class="reject-btn font-medium text-red-600 dark:text-red-600 hover:underline pl-2" data-leave-id="{{ leave.id }}">Reject</a>
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="confirmationModal" class="fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow dark:bg-gray-700 max-w-sm w-full">
+            <div class="px-6 py-4">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Confirm Action</h3>
+                <p id="confirmationMessage" class="mt-2 text-sm text-gray-600 dark:text-gray-400"></p>
+            </div>
+            <div class="flex items-center justify-end px-6 py-4 space-x-2">
+                <button id="cancelBtn" class="text-gray-500 dark:text-gray-300 hover:text-gray-700">Cancel</button>
+                <button id="confirmBtn" class="text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<p>No leave history available.</p>
+{% endif %}
+
+</div>
+{% endblock %}
+{% block scriptjs %}
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('confirmationModal');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    let leaveId, actionType;
+
+    document.querySelectorAll('.approve-btn, .reject-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            leaveId = this.getAttribute('data-leave-id');
+            actionType = this.classList.contains('approve-btn') ? 'approve' : 'reject';
+            confirmationMessage.textContent = `Are you sure you want to ${actionType} this leave request?`;
+            modal.classList.remove('hidden');
+        });
+    });
+
+    cancelBtn.addEventListener('click', function() {
+        modal.classList.add('hidden');
+    });
+
+    confirmBtn.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        // Assuming you have a view to handle the approval/rejection
+        window.location.href = `/leave/${actionType}/${leaveId}/`;
+    });
+});
+{% endblock %}

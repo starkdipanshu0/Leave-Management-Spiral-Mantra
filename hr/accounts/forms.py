@@ -26,13 +26,13 @@ class UserRegistrationForm(UserCreationForm):
 class UserLogin(forms.Form):
 	username = forms.CharField(
 		widget=forms.TextInput(attrs={
-            'class': 'form-input',  # Custom class for styling
+            'class': 'mt-1 block w-full px-3 py-2 text-sm text-gray-900 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-500',  # Custom class for styling
             'placeholder': 'Enter your username'
         })
 	)
 	password = forms.CharField(
 		widget=forms.PasswordInput(attrs={
-            'class': 'form-input',  # Custom class for styling
+            'class': 'mt-1 block w-full px-3 py-2 text-sm text-gray-900 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-500',  # Custom class for styling
             'placeholder': 'Enter your password'
         })
 	)
