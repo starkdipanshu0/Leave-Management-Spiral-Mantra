@@ -63,22 +63,22 @@ class Education(models.Model):
     high_school_name = models.CharField(max_length=255, blank=True, null=True)
     high_school_obtained_marks = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     high_school_year_of_passing = models.IntegerField(blank=True, null=True)
-    high_school_result_file = models.FileField(upload_to='results/highschool/', blank=True, null=True)
+    # high_school_result_file = models.FileField(upload_to='results/highschool/', blank=True, null=True)
 
     intermediate_college_name = models.CharField(max_length=255, blank=True, null=True)
     intermediate_obtained_marks = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     intermediate_year_of_passing = models.IntegerField(blank=True, null=True)
-    intermediate_result_file = models.FileField(upload_to='results/intermediate/', blank=True, null=True)
+    # intermediate_result_file = models.FileField(upload_to='results/intermediate/', blank=True, null=True)
 
     graduation_university_name = models.CharField(max_length=255, blank=True, null=True)
     graduation_obtained_marks = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     graduation_year_of_passing = models.IntegerField(blank=True, null=True)
-    graduation_result_file = models.FileField(upload_to='results/graduation/', blank=True, null=True)
+    # graduation_result_file = models.FileField(upload_to='results/graduation/', blank=True, null=True)
 
     post_graduation_university_name = models.CharField(max_length=255, blank=True, null=True)
     post_graduation_obtained_marks = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     post_graduation_year_of_passing = models.IntegerField(blank=True, null=True)
-    post_graduation_result_file = models.FileField(upload_to='results/postgraduation/', blank=True, null=True)
+    # post_graduation_result_file = models.FileField(upload_to='results/postgraduation/', blank=True, null=True)
 
     def __str__(self):
         return f"Education for {self.employee.user.first_name}"
@@ -125,7 +125,7 @@ class Employee(models.Model):
     startdate = models.DateField(_('Employement Date'),help_text='date of employement',blank=False,null=True)
     employeetype = models.CharField(_('Employee Type'),max_length=15,default=FULL_TIME,choices=EMPLOYEETYPE,blank=False,null=True)
     employeeid = models.CharField(_('Employee ID Number'),max_length=10,null=True,blank=True)
-    dateissued = models.DateField(_('Date Issued'),help_text='date staff id was issued',blank=False,null=True)
+    #dateissued = models.DateField(_('Date Issued'),help_text='date staff id was issued',blank=False,null=True)
 
     #Leave Balance
     casual_leave_balance = models.PositiveIntegerField(default=12)
@@ -133,7 +133,7 @@ class Employee(models.Model):
     #Education
     education = models.OneToOneField(Education, on_delete=models.CASCADE, null= True, blank=True, related_name='education')
     # app related
-    is_blocked = models.BooleanField(_('Is Blocked'),help_text='button to toggle employee block and unblock',default=False)
+    is_active = models.BooleanField(_('Is Blocked'),help_text='button to toggle employee block and unblock',default=False)
     is_deleted = models.BooleanField(_('Is Deleted'),help_text='button to toggle employee deleted and undelete',default=False)
 
     created = models.DateTimeField(verbose_name=_('Created'),auto_now_add=True,null=True)

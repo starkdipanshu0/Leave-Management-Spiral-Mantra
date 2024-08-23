@@ -2,24 +2,66 @@
 
 {% block content %}
 
-<div class=" bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 mt-14">
+<div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 mt-14">
     <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">Employee Details</h1>
 
-    <div class="space-y-4">
+    <!-- Personal Details -->
+    <div class="space-y-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Personal Details</h2>
         <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Name:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.user.get_full_name }}</span></p>
-        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Department:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.department.name }}</span></p>
-        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Role:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.role.name }}</span></p>
         <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Phone Number:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.phone_number }}</span></p>
         <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Email:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.personal_email }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Date of Birth:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.birth_date }}</span></p>
         <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Employee Type:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.employeetype }}</span></p>
+    </div>
+
+    <!-- Work Details -->
+    <div class="space-y-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Work Details</h2>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Department:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.department.name }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Role:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.role.name}}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Employment Start Date:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.startdate }}</span></p>
+        <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Employee ID:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.employeeid }}</span></p>
         <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Casual Leave Balance:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.casual_leave_balance }}</span></p>
         <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Paid Leave Balance:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.paid_leave_balance }}</span></p>
     </div>
 
+    <!-- Education Details -->
+    <div class="space-y-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Education Details</h2>
+        {% if employee.education %}
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">High School Name:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.education.high_school_name }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">High School Marks:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.education.high_school_obtained_marks }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Intermediate College Name:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.education.intermediate_college_name }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Intermediate Marks:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.education.intermediate_obtained_marks }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Graduation University Name:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.education.graduation_university_name }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Graduation Marks:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.education.graduation_obtained_marks }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Post Graduation University Name:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.education.post_graduation_university_name }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Post Graduation Marks:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.education.post_graduation_obtained_marks }}</span></p>
+        {% else %}
+            <p class="text-gray-600 dark:text-gray-400">No education details available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Family Contact Details -->
+    <div class="space-y-4 mt-8">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Family Contact Details</h2>
+        {% if employee.user.family_contact %}
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Father's Name:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.user.family_contact.father_name }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Mother's Name:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.user.family_contact.mother_name }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Home Contact Number:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.user.family_contact.home_contact_number }}</span></p>
+            <p class="text-lg"><strong class="font-semibold text-gray-700 dark:text-gray-300">Address:</strong> <span class="text-gray-600 dark:text-gray-400">{{ employee.user.family_contact.address }}</span></p>
+        {% else %}
+            <p class="text-gray-600 dark:text-gray-400">No family contact details available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Edit Button -->
     <div class="mt-6">
         <a href="{% url 'employee:edit' employee.id %}" class="inline-block bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-600 dark:hover:bg-blue-700 transition duration-200">
             Edit Details
         </a>
     </div>
 </div>
+
 {% endblock %}

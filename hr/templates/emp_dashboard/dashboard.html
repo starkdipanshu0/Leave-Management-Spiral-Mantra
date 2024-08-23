@@ -2,21 +2,23 @@
 {% block content %}
 <div class="p-4  mt-14">
 <div class="grid grid-cols-3 gap-4 mb-4">
-  <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800 flex-col ">
-     <p class="text-2xl text-gray-400 dark:text-gray-50"> {{ user.first_name }} {{ user.last_name }}</p>
-     <p class="text-2xl text-gray-400 dark:text-gray-50">Position: {{ profile.role }}</p>
-  </div>
+  <a href="{% url 'employee:details' employee.id %}">
+    <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800 flex-col ">
+      <p class="text-2xl text-gray-400 dark:text-gray-50"> {{ user.first_name }} {{ user.last_name }}</p>
+      <p class="text-2xl text-gray-400 dark:text-gray-50">Position: {{ profile.role }}</p>
+   </div>
+  </a>
 </div>
 
 <div class="grid grid-cols-2 gap-4 mb-4">
    <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
      <p class="text-2xl text-gray-400 dark:text-gray-500">
-      Available Casual Leave balance: {{profile.casual_leave_balance}} Days
+      Available Casual Leave balance: {{employee.casual_leave_balance}} Days
      </p>
    </div>
    <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
      <p class="text-2xl text-gray-400 dark:text-gray-500">
-      Available Paid Leave balance: {{profile.paid_leave_balance}} Days
+      Available Paid Leave balance: {{employee.paid_leave_balance}} Days
      </p>
    </div>
 </div>

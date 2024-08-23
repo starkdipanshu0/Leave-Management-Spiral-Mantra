@@ -22,9 +22,9 @@
                 <th scope="col" class="px-6 py-3">
                     Employment Type
                 </th>
-                {% comment %} <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                </th> {% endcomment %}
+                <th scope="col" class="px-6 py-3">
+                    Epmloyee Status
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -43,9 +43,16 @@
                     <td class="px-6 py-4">
                         {{ employee.employeetype }}
                     </td>
+                    <td class="px-6 py-4">
+                        {% if is_active %}
+                        Active
+                        {% else %}
+                        Inactive
+                        {% endif %}
+                    </td>
 
 
-                </tr>
+                </tr>act
 
             {% endfor %}
         </tbody>

@@ -25,7 +25,7 @@ def employee_dashboard(request):
 
     context = {
         'user' : user,
-        'profile' : employee,
+        'employee' : employee,
         'leave_applications' : leave
     }
 

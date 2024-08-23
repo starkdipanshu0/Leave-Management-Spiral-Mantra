@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'django_browser_reload',
 
     # PROJECT APPS
-    'dashboard',
     'accounts',
     'employee',
     'leave',

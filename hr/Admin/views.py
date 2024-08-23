@@ -33,3 +33,17 @@ def leave_application(request):
 def employee_list(request):
     employees = Employee.objects.all()
     return render(request, 'Admin/employee_list.html', {'employees': employees})
+
+
+def department_detail(request, department_id):
+    department = get_object_or_404(Department, id=department_id)
+    employees = Employee.objects.filter(department=department)
+    return render(request, 'Admin/department_detail.html', {
+        'department': department,
+        'employees': employees,
+    })
+
+def department_list(request):
+    departments = Department.objects.all()
+    return render(request, 'Admin/department_list.html', {'departments': departments})
+

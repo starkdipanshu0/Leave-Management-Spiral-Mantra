@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 mt-14">
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">Departments</h1>
+
+    {% if departments %}
+        <ul class="space-y-4">
+            {% for department in departments %}
+                <li class="text-lg">
+                    <a href="{% url 'Admin:department_detail' department.id %}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
+                        <strong class="font-semibold">{{ department.name }}</strong>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400">{{ department.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-gray-600 dark:text-gray-400">No departments found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
